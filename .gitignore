@@ -1,0 +1,11 @@
+/src/*
+!/src/.gitkeep
+
+/cache/*
+!/cache/.gitkeep
+
+/database/*
+!/database/.gitkeep
+
+/config/*
+!/config/.gitkeep
