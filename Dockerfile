@@ -20,7 +20,6 @@ RUN apt-get update \
     libicu-dev \
     libonig-dev \
     libpq-dev \
-    nodejs \
     vim \
     nano \
   && apt-get clean \
@@ -37,10 +36,20 @@ RUN docker-php-ext-install \
   bcmath \
   mbstring  \
   exif \
-  pcntl
+  pcntl && \
+  docker-php-ext-enable pgsql \
+  pdo_pgsql \
+  bcmath \
+  mbstring  \
+  exif \
+  pcntl 
 
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
+  && apt-get install -y nodejs
 
 FROM base AS development
+
+COPY ./config/php.development.ini /usr/local/etc/php/php.ini
 
 FROM development AS development-xdebug
 
